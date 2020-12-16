@@ -1,0 +1,15 @@
+<h3>Name: <%= @blogger.name %></h3>
+
+<h3>Bio: <%= @blogger.bio %></h3>
+
+<h3>Age: <%= @blogger.age %></h3>
+
+<% if @blogger.posts.length > 0 %>
+    <h3>Total number of likes: <%= @blogger.posts.sum {|post| post.likes} %></h3>
+<% else %>
+    <h3>There are no posts!</h3>
+<% end %>
+
+<% most_like = @blogger.posts.max_by {|post| post.likes }%>
+<h4>Most liked Post: <%= link_to most_like.title, post_path(most_like.id) %></h4>
+

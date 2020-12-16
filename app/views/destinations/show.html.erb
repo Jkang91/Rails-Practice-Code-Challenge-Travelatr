@@ -1,0 +1,19 @@
+<h1><%= @destination.name %></h1>
+
+<h3>Last 5 recent posts:
+<% last_five_post = @destination.posts.last(5)%>
+    <% if last_five_post.count > 0 %>
+        <% last_five_post.each do |post| %>
+            <h1>Post title: <%= post.title %></h1>
+            <p>Post content:<%= post.content %></p>
+            <h3>Post likes: <%= post.likes %></h3>
+        <% end %>
+        <% most_like = @destination.posts.select {|post| post.likes }.max %>
+        <h4>Most liked Post: <%= link_to most_like.title, post_path(most_like.id) %></h4>
+    <% else %>
+        <p>There is no post for this destination!</p>
+    <% end %>
+</h3>
+
+<% total_age = @destination.bloggers.uniq.collect {|blogger| blogger.age } %>
+<h2>Average age of people that wrote about this place: <%= avg = total_age.sum / total_age.size %></h2>

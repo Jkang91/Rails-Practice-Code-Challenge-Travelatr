@@ -1,0 +1,10 @@
+<h1>New Post</h1>
+
+<%= form_for @post do |t| %>
+    <%= t.label "Name: " %>
+    <%= t.collection_select :blogger_id, Blogger.all, :id, :name %>
+    <%= t.label "Destination: " %>
+    <%= t.collection_select :destination_id, Destination.all, :id, :name %>
+    
+    <%= t.submit "Submit Post"%>
+<% end %>   
